@@ -1,6 +1,6 @@
 # SGD-Regressor-from-scratch
 
-The goal of the project is to build an SGD regressor and use it for a recommendation system.
+The goal of the project is to build a recommendation system from scratch, starting with an SGDRegressor. To build an intuition about how this model works, we need to understand the math behind it.
 
 Before we dive into the project, let me explain what gradient descent is. Gradient descent is an optimization algorithm that minimizes a cost function by iteratively moving in the direction of the steepest descent. Basically, you start with a random point on the mountain, find the slope, and try to minimize the cost by following in that direction.
 The size of each step is determined by the learning rate. The stochastic nature of this algorithm refers to the randomness.
