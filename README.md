@@ -9,3 +9,5 @@ Version 1 of the SGD_v1.ipynb contains the basic model. I have tested this model
 it does not work on a pandas DataFrame (referring to this code: X_shuffled = X[indices]) since the model tries to select columns by label. NumPy arrays use positional indexing, so X[indices] works perfectly on arrays.
 
 Version 2 of the SGD_v2.ipynb addresses the issues from version 1. X and y get converted into NumPy arrays. To use this model, the features and target label need to be standardized, since the weights and biases can explode to inf/nan. Scaling the features helps gradient descent converge quickly and reduces computational time. We have created mini-batch SGD, as it tends to have a smoother descent than single batch SGD.
+
+Matrix Factorization:
