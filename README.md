@@ -1,4 +1,4 @@
-# SGD-Regressor-from-scratch
+# Recommenders
 
 The goal of the project is to build a recommendation system from scratch, starting with an SGDRegressor. To build an intuition about how this model works, we need to understand the math behind it.
 
