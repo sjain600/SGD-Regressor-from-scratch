@@ -1,13 +1,113 @@
-# Recommenders
+# Neural Collaborative Filtering Recommender System
 
-The goal of the project is to build a recommendation system from scratch, starting with an SGDRegressor. To build an intuition about how this model works, we need to understand the math behind it.
+This project implements a deep learning-based recommender system using Neural Matrix Factorization (NeuMF). It combines classical collaborative filtering with neural networks to learn complex user–item interactions and generate personalized movie recommendations.
 
-Before we dive into the project, let me explain what gradient descent is. Gradient descent is an optimization algorithm that minimizes a cost function by iteratively moving in the direction of the steepest descent. Basically, you start with a random point on the mountain, find the slope, and try to minimize the cost by following in that direction.
-The size of each step is determined by the learning rate. The stochastic nature of this algorithm refers to the randomness.
+The system is deployed as an interactive application using Gradio and Hugging Face Spaces.
 
-Version 1 of the SGD_v1.ipynb contains the basic model. I have tested this model on the Kaggle Competition playground-series-s5e10. The key issues with this model are that
-it does not work on a pandas DataFrame (referring to this code: X_shuffled = X[indices]) since the model tries to select columns by label. NumPy arrays use positional indexing, so X[indices] works perfectly on arrays.
+---
 
-Version 2 of the SGD_v2.ipynb addresses the issues from version 1. X and y get converted into NumPy arrays. To use this model, the features and target label need to be standardized, since the weights and biases can explode to inf/nan. Scaling the features helps gradient descent converge quickly and reduces computational time. We have created mini-batch SGD, as it tends to have a smoother descent than single batch SGD.
+## Overview
 
-Matrix Factorization:
+Recommender systems are widely used in platforms like Netflix and Amazon to personalize user experience by predicting user preferences based on historical interactions: contentReference[oaicite:0]{index=0}.
+
+This project focuses on:
+
+- Collaborative filtering using latent factor models
+- Extending matrix factorization using neural networks
+- Building a production-ready recommendation interface
+
+---
+
+## Models Implemented
+
+### 1. Matrix Factorization
+
+Based on the foundational work from:
+
+- Koren et al., Matrix Factorization Techniques for Recommender Systems :contentReference[oaicite:1]{index=1}
+
+Key idea:
+- Users and items are mapped to a shared latent space
+- Predictions are computed using the dot product of embeddings
+
+\[
+\hat{r}_{ui} = q_i^T p_u
+\]
+
+Limitations:
+- Assumes linear interaction between user and item features
+- Struggles to capture complex relationships
+
+---
+
+### 2. Neural Collaborative Filtering (NCF)
+
+Based on:
+
+- He et al., Neural Collaborative Filtering :contentReference[oaicite:2]{index=2}
+
+Key improvements:
+- Replaces inner product with a neural network
+- Learns non-linear user–item interactions
+- Uses embeddings + multi-layer perceptron
+
+---
+
+### 3. Neural Matrix Factorization (NeuMF)
+
+Final model used in this project.
+
+Combines:
+- Generalized Matrix Factorization (GMF)
+- Multi-Layer Perceptron (MLP)
+
+Advantages:
+- Captures both linear and non-linear interactions
+- Improves recommendation accuracy significantly over traditional MF :contentReference[oaicite:3]{index=3}
+
+---
+
+## Architecture
+
+The model consists of:
+
+- User embedding layer
+- Item embedding layer
+- GMF pathway (element-wise interaction)
+- MLP pathway (deep neural network)
+- Final prediction layer (sigmoid output)
+
+---
+
+## Dataset
+
+- MovieLens dataset
+- Contains user ratings and movie metadata
+- Converted into implicit feedback for training
+
+---
+
+## Project Structure
+
+```bash
+Recommender-System/
+│
+├── app.py                 # Gradio app for deployment
+├── neumf.pth              # Trained model weights
+├── movies.csv             # Movie metadata
+├── ratings.csv            # User-item interactions
+├── movie_ids.pkl          # Encoded movie mapping
+├── user_map.pkl           # Encoded user mapping
+├── requirements.txt       # Dependencies
+│
+├── notebooks/             # Model development and experiments
+│   ├── training.ipynb
+│   └── evaluation.ipynb
+│
+├── src/                   # Modular code (recommended improvement)
+│   ├── model.py
+│   ├── data_loader.py
+│   ├── inference.py
+│   └── utils.py
+│
+└── README.md
