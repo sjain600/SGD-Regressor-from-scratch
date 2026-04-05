@@ -8,7 +8,7 @@ The system is deployed as an interactive application using Gradio and Hugging Fa
 
 ## Overview
 
-Recommender systems are widely used in platforms like Netflix and Amazon to personalize user experience by predicting user preferences based on historical interactions: contentReference[oaicite:0]{index=0}.
+Recommender systems are widely used in platforms like Netflix and Amazon to personalize user experience by predicting user preferences based on historical interactions.
 
 This project focuses on:
 
@@ -24,15 +24,12 @@ This project focuses on:
 
 Based on the foundational work from:
 
-- Koren et al., Matrix Factorization Techniques for Recommender Systems :contentReference[oaicite:1]{index=1}
+- Koren et al., Matrix Factorization Techniques for Recommender Systems: 
 
 Key idea:
 - Users and items are mapped to a shared latent space
 - Predictions are computed using the dot product of embeddings
 
-\[
-\hat{r}_{ui} = q_i^T p_u
-\]
 
 Limitations:
 - Assumes linear interaction between user and item features
@@ -44,7 +41,7 @@ Limitations:
 
 Based on:
 
-- He et al., Neural Collaborative Filtering :contentReference[oaicite:2]{index=2}
+- He et al., Neural Collaborative Filtering :contentReference
 
 Key improvements:
 - Replaces inner product with a neural network
@@ -63,7 +60,7 @@ Combines:
 
 Advantages:
 - Captures both linear and non-linear interactions
-- Improves recommendation accuracy significantly over traditional MF :contentReference[oaicite:3]{index=3}
+- Improves recommendation accuracy significantly over traditional MF
 
 ---
 
